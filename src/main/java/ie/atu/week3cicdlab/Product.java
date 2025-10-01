@@ -7,8 +7,8 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 public class Product {
-    @NotBlank
+    @NotBlank(message = "Cannot be empty")
     private String productName;
-    @Positive
+    @Positive(message ="Cannot be negative")
     private double price;
 }
