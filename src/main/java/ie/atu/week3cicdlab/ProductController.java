@@ -2,7 +2,8 @@ package ie.atu.week3cicdlab;
 
 
 
-import jakarta.validation.Valid;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import jakarta.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ProductController {
 
     List<Product> myList = new ArrayList<>();
+
 
     @GetMapping("/hello")
     public String hello(){
@@ -32,5 +34,10 @@ public class ProductController {
         myList.add(myProduct);
 
         return myProduct;
+    }
+    @PostMapping("/BulkAddProduct")
+    public List<Product> add_bulkProduct(@Valid @RequestBody List<Product> myList){
+
+        return myList;
     }
 }
