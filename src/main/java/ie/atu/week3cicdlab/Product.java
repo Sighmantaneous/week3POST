@@ -1,7 +1,6 @@
 package ie.atu.week3cicdlab;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Data
@@ -9,6 +8,7 @@ import lombok.*;
 public class Product {
     @NotBlank(message = "Cannot be empty")
     private String productName;
-    @Positive(message ="Cannot be negative")
+    @Positive
+    @NotNull(message="Cannot be negative")
     private double price;
 }
