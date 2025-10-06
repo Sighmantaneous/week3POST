@@ -2,7 +2,7 @@ package ie.atu.week3cicdlab;
 
 
 
-import com.fasterxml.jackson.core.JsonGenerationException;
+
 import jakarta.validation.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,21 +13,21 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+    //Creating an ArrayList of Products
     List<Product> myList = new ArrayList<>();
 
-
+    //Test function to ensure Mapping is working
     @GetMapping("/hello")
     public String hello(){
         return "Hello";
     }
-
+    //Displaying all current products
     @GetMapping("/getproduct")
     public List<Product> get_product(){
 
-        Product myProduct = new Product("Fridge", 450);
-
         return myList;
     }
+    //Adding Product to array
     @PostMapping("/addProduct")
     public Product addProduct(@Valid @RequestBody Product myProduct){
 
@@ -35,9 +35,16 @@ public class ProductController {
 
         return myProduct;
     }
+    //Adding multiply products at a time to array
     @PostMapping("/BulkAddProduct")
-    public List<Product> add_bulkProduct(@Valid @RequestBody List<Product> myList){
-
+    public List<Product> add_bulkProduct(@Valid @RequestBody List <Product> myProducts){
+        myList.addAll(myProducts);
         return myList;
+    }
+    //Getting the amount of products in array
+    @GetMapping("/countProduct")
+    public int getProductCount(){
+
+        return myList.size();
     }
 }
